@@ -1,0 +1,50 @@
+[
+    {
+        "id": "1",
+        "title": "Running Shoes",
+        "description": "Lightweight running shoes designed for comfort and speed.",
+        "price": "79.99",
+        "image": "../assets/images/running-shoes.jpg",
+        "category": "Footwear"
+    },
+    {
+        "id": "2",
+        "title": "Basketball",
+        "description": "Durable and high-performance basketball for indoor and outdoor use.",
+        "price": "29.99",
+        "image": "../assets/images/basketball.jpg",
+        "category": "Balls"
+    },
+    {
+        "id": "3",
+        "title": "Yoga Mat",
+        "description": "Non-slip, cushioned yoga mat for all levels of practice.",
+        "price": "25.99",
+        "image": "../assets/images/yoga-mat.jpg",
+        "category": "Fitness"
+    },
+    {
+        "id": "4",
+        "title": "Tennis Racket",
+        "description": "Professional-grade tennis racket for competitive players.",
+        "price": "120.00",
+        "image": "../assets/images/tennis-racket.jpg",
+        "category": "Rackets"
+    },
+    {
+        "id": "5",
+        "title": "Football Cleats",
+        "description": "High-performance football cleats with excellent traction.",
+        "price": "89.99",
+        "image": "../assets/images/football-cleats.jpg",
+        "category": "Footwear"
+    },
+    {
+        "id": "6",
+        "title": "Soccer Ball",
+        "description": "Official size soccer ball with durable stitching for long-lasting play.",
+        "price": "19.99",
+        "image": "../assets/images/soccer-ball.jpg",
+        "category": "Balls"
+    }
+]

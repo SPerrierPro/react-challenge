@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+nav {
+  display: flex;
+  width: 100vw;
+  height: 5em;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #050a30;
+}
+
+nav h1 {
+  font-size: 1.3em; 
+  margin-right: 3rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #f4f6fc;
+}
+
+nav img {
+  margin-left: 3rem;
+  height: inherit;
+}
+
+footer {
+  background-color: #050a30;
+  height: 5em;
+  width: 100%;
+  margin-top: 100%;
+}
