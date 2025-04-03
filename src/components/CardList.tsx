@@ -7,6 +7,7 @@ function CardList() {
     <main>
           {data.map((d) => (
               <Card
+              key={d.id}
               id={d.id}
               title={d.title}
               description={d.description}

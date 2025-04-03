@@ -14,7 +14,7 @@ function Card ( {title, description, price, image }: Article ) {
             <img src={image} alt={title} />
             <h2>{title}</h2>
             <p>{description}</p>
-            <p>{price}</p>
+            <p className="price">{price}€</p>
         </div>
     )
 }
