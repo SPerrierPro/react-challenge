@@ -6,11 +6,11 @@ import CardList from './components/CardList';
 function App() {
 
   return (
-    <body>
+    <section>
       <NavBar />
       <CardList />
       <Footer />
-    </body>
+    </section>
   )
 }
 
