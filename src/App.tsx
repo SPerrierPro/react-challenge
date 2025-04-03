@@ -1,15 +1,14 @@
-import data from './data/data.json'
-import './App.css'
-import NavBar from './components/NavBar'
-import Footer from './components/Footer'
+import './App.css';
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
+import CardList from './components/CardList';
 
 function App() {
-
 
   return (
     <body>
       <NavBar />
-
+      <CardList />
       <Footer />
     </body>
   )
