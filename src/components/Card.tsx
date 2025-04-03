@@ -1,20 +1,53 @@
-interface Article {
-      id: string;
-      title: string;
-      description: string;
-      price: string;
-      image: string;
-      category: string;
-    }
+import { useState } from "react";
 
+    type Props = {
+        setCartPrice: React.Dispatch<React.SetStateAction<number>>;
+        // le type des set est visible quand on laisse la souris dessus
+        cartPrice: number;
+        setCartCount: React.Dispatch<React.SetStateAction<number>>;
+        cartCount: number;
+        id: string;
+        title: string;
+        description: string;
+        price: number;
+        image: string;
+        category: string;
+      } 
 
-function Card ( {title, description, price, image }: Article ) {
+function Card ({title, description, price, image, setCartCount, cartCount, setCartPrice, cartPrice}: Props ) {
+
+    const [articleCount, setArticleCount] = useState(0);
+
     return (
-        <div>
+        <div className="card">
             <img src={image} alt={title} />
             <h2>{title}</h2>
             <p>{description}</p>
             <p className="price">{price}€</p>
+            <div>
+                {articleCount === 0 ? (
+                    <button type="button" onClick={ () => {
+                        setArticleCount(articleCount + 1);
+                        setCartCount(cartCount + 1);
+                        setCartPrice(cartPrice + price);
+                    }}>Ajouter au panier</button> 
+                ) : (
+                    <div className="added-article">
+                        <button type="button" onClick={ () => {
+                        setArticleCount(articleCount - 1);
+                        setCartCount(cartCount - 1);
+                        setCartPrice((cartPrice - price));
+                    }}>-</button>
+                        <p>{articleCount}</p>
+                        <button type="button" onClick={ () => {
+                        setArticleCount(articleCount + 1);
+                        setCartCount(cartCount + 1);
+                        setCartPrice((cartPrice + price));
+                    }}>+</button>
+                    </div>
+                )
+                }
+            </div>
         </div>
     )
 }
