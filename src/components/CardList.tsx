@@ -1,19 +1,44 @@
 import Card from "./Card";
-import data from "../data/data.json"
+import data from "../data/data.json";
 
 type Props = {
-  setCartCount: React.Dispatch<React.SetStateAction<number>>
-  cartCount: number
-  setCartPrice: React.Dispatch<React.SetStateAction<number>>
-  cartPrice: number
-}
+  onSale: boolean;
+  setCartCount: React.Dispatch<React.SetStateAction<number>>;
+  cartCount: number;
+  setCartPrice: React.Dispatch<React.SetStateAction<number>>;
+  cartPrice: number;
+};
 
-function CardList({setCartCount, cartCount, setCartPrice, cartPrice}: Props) {
-
+function CardList({
+  setCartCount,
+  cartCount,
+  setCartPrice,
+  cartPrice,
+  onSale,
+}: Props) {
   return (
     <main>
-          {data.map((d) => (
+      {onSale
+        ? data
+            .filter((it) => it.onsale)
+            .map((d) => (
               <Card
+                setCartPrice={setCartPrice}
+                cartPrice={cartPrice}
+                cartCount={cartCount}
+                setCartCount={setCartCount}
+                key={d.id}
+                id={d.id}
+                title={d.title}
+                description={d.description}
+                price={d.price}
+                image={d.image}
+                category={d.category}
+                onsale={d.onsale}
+              />
+            ))
+        : data.map((d) => (
+            <Card
               setCartPrice={setCartPrice}
               cartPrice={cartPrice}
               cartCount={cartCount}
@@ -25,10 +50,11 @@ function CardList({setCartCount, cartCount, setCartPrice, cartPrice}: Props) {
               price={d.price}
               image={d.image}
               category={d.category}
-              />
+              onsale={d.onsale}
+            />
           ))}
-    </main> 
-  )
+    </main>
+  );
 }
 
-export default CardList; 
+export default CardList;
