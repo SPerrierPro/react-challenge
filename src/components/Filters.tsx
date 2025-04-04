@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 type Props = {
-  onSale: boolean;
-  setOnSale: React.Dispatch<React.SetStateAction<boolean>>;
+  filter: (item) => boolean;
+  setFilter: React.Dispatch<React.SetStateAction<(item) => boolean>>;
 };
 
 const Buttons = [
@@ -30,18 +30,19 @@ const Buttons = [
   },
 ];
 
-function Filters({ onSale, setOnSale }: Props) {
-  // Sert a toggle la classe sur les boutons en fonction de letat du state pour afficher le style si selectionne, en lui attribuant la valeur de la key (unique donc applique bien a un seul bouton)
-  const [activeButton, setActiveButton] = useState("");
-  function handleActiveButton(key: string) {
-    activeButton === key ? setActiveButton("") : setActiveButton(key);
+function Filters({ filter, setFilter }: Props) {
+  //revenir sur ca voir ci je comprend tjr, le debug a ete complique et a necessite bcp de ressources
+  function handleClickFilter(key: string) {
+    const button = Buttons.find((b) => b.key === key);
+    const buttonFilter = button?.filter;
+    const byDefault = () => true;
+    const newFilter = buttonFilter === undefined ? byDefault : buttonFilter;
+    //pour le ?, optional chaining pour eviter une erreur si toute la valeur avant le filter est undefined si le find ne trouve rien
+    newFilter === filter
+      ? setFilter(() => byDefault)
+      : setFilter(() => newFilter);
+    // obligee de rajouter une fonction anonyme dans setFilter sinon plus rien ne marche, car byDefault est une fonction, mais utilise le resultat de celle-ci, alors quon veut juste qu'il la stocke> Besoin de la repasser dans une autre fonction pour que ca ne fasse pas ca
   }
-
-  function handleClickSale(key: string) {
-    setOnSale(!onSale);
-    handleActiveButton(key);
-  }
-  console.log(activeButton);
 
   return (
     <section className="filters">
@@ -51,8 +52,8 @@ function Filters({ onSale, setOnSale }: Props) {
           <button
             key={b.key}
             type="button"
-            className={activeButton === b.key ? "active-button" : ""}
-            onClick={() => handleClickSale(b.key)}
+            className={filter === b.filter ? "active-button" : ""}
+            onClick={() => handleClickFilter(b.key)}
             //je cree une fonction anonyme dans le map qui appelle ma fonction handleclick sinon la fonction est appellee quand map passe sur mon tableau. Et du coup je peux passer key en arg de la fonction, qui sera different pour chaque btn car la key est unique
           >
             {b.text}

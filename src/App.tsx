@@ -10,14 +10,14 @@ import CardList from "./components/CardList";
 function App() {
   const [cartCount, setCartCount] = useState(0);
   const [cartPrice, setCartPrice] = useState(0);
-  const [onSale, setOnSale] = useState(false);
+  const [filter, setFilter] = useState(() => (item) => true);
 
   return (
     <article>
       <NavBar cartCount={cartCount} cartPrice={cartPrice} />
-      <Filters onSale={onSale} setOnSale={setOnSale} />
+      <Filters filter={filter} setFilter={setFilter} />
       <CardList
-        onSale={onSale}
+        filter={filter}
         setCartCount={setCartCount}
         cartCount={cartCount}
         setCartPrice={setCartPrice}

@@ -2,7 +2,7 @@ import Card from "./Card";
 import data from "../data/data.json";
 
 type Props = {
-  onSale: boolean;
+  filter: (item) => boolean;
   setCartCount: React.Dispatch<React.SetStateAction<number>>;
   cartCount: number;
   setCartPrice: React.Dispatch<React.SetStateAction<number>>;
@@ -14,45 +14,28 @@ function CardList({
   cartCount,
   setCartPrice,
   cartPrice,
-  onSale,
+  filter,
 }: Props) {
+  console.log(filter);
+
   return (
     <main>
-      {onSale
-        ? data
-            .filter((it) => it.onsale)
-            .map((d) => (
-              <Card
-                setCartPrice={setCartPrice}
-                cartPrice={cartPrice}
-                cartCount={cartCount}
-                setCartCount={setCartCount}
-                key={d.id}
-                id={d.id}
-                title={d.title}
-                description={d.description}
-                price={d.price}
-                image={d.image}
-                category={d.category}
-                onsale={d.onsale}
-              />
-            ))
-        : data.map((d) => (
-            <Card
-              setCartPrice={setCartPrice}
-              cartPrice={cartPrice}
-              cartCount={cartCount}
-              setCartCount={setCartCount}
-              key={d.id}
-              id={d.id}
-              title={d.title}
-              description={d.description}
-              price={d.price}
-              image={d.image}
-              category={d.category}
-              onsale={d.onsale}
-            />
-          ))}
+      {data.filter(filter).map((d) => (
+        <Card
+          setCartPrice={setCartPrice}
+          cartPrice={cartPrice}
+          cartCount={cartCount}
+          setCartCount={setCartCount}
+          key={d.id}
+          id={d.id}
+          title={d.title}
+          description={d.description}
+          price={d.price}
+          image={d.image}
+          category={d.category}
+          onsale={d.onsale}
+        />
+      ))}
     </main>
   );
 }
